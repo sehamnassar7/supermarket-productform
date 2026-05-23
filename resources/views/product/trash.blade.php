@@ -5,20 +5,10 @@
 
 <div class="jumbotron container">
 
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-    <a class="btn btn-primary btn-lg" href="{{ route('product.create') }}" role="button">Create  </a>
-    <a class="btn btn-primary btn-lg" href="{{ route('trash.delete') }}" role="button">Trash  </a>
+    <p>trached products</p>
+    <a class="btn btn-primary btn-lg" href="{{ route('product.index') }}" role="button">back  </a>
+
   </div>
-
-
-
-  <div class="container">
-    @if ($message = Session::get('success'))
-      <div class="alert alert-primary" role="alert">
-        {{$message}}
-
-        </div>
-        @endif
 
 
 
@@ -48,25 +38,13 @@
                 <td>{{$item->image}}$</td>
                <td>
 
-                 <div class="row">
-                        <div class="col-sm">
-                <a class="btn btn-success" href="{{ route('product.edit', $item->id) }}">Edit</a>
-                </div>
+
                   <div class="col-sm">
-                <a class="btn btn-primary" href="{{ route('product.show', $item->id) }}">Show</a>
+                <a class="btn btn-primary" href="{{ route('back.softdelete', $item->id) }}">back</a>
                  </div>
                <div class="col-sm">
-                <form action="{{route('product.destroy',$item->id)}}" method="POST">
-
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger" >  Delete</button>
 
 
-                </form>
-
-                <a class="btn btn-warning" href="{{ route('soft.delete', $item->id) }}">soft delete</a>
-                </div>
                 </div>
                </td>
 
@@ -110,7 +88,7 @@
 --}}
         </tbody>
       </table>
-      {!!$products->links()!!}
+
 
   </div>
 @endsection

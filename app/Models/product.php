@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class product extends Model
 {
@@ -10,5 +11,8 @@ class product extends Model
         'product_index',
         'product_name',
         'product_price',
-        'detail'];
+        'detail',
+        'image'];
+        protected $dates =['deleted_at'];
+        use SoftDeletes;
 }

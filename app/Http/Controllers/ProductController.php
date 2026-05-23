@@ -16,6 +16,12 @@ class ProductController extends Controller
         return view('product.index',compact('products'));
     }
 
+ public function trashedProducts()
+    {
+        $products= product::onlyTrashed()-> latest()->paginate(4);
+        return view('product.trash',compact('products'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -34,10 +40,12 @@ class ProductController extends Controller
                 [
                     'product_name'=>'required',
                     'product_price'=>'required',
+                    'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                     // 'detail'=>'required',
                 ]
 
             );
+
         $product = product::create($request->all());
         return redirect ()->route('product.index')->with ('success', 'product added');
     }
@@ -68,6 +76,7 @@ class ProductController extends Controller
                     'product_name'=>'required',
                     'product_price'=>'required',
                     //'detail'=>'required',
+                    'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 ]
 
             );
@@ -82,5 +91,20 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect ()->route('product.index')->with ('success', 'product deleted');
+    }
+
+    public function softDelete($id)
+    {
+      $product = product::find($id)->delete();
+
+        return redirect ()->route('product.index')->with ('success', 'product deleted');
+    }
+
+     public function backFromsoftDelete($id)
+    {
+
+        $products= product::onlyTrashed()-> where('id',$id)->first()->restore();
+
+        return redirect ()->route('product.index')->with ('success', 'product restored');
     }
 }

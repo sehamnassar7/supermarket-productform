@@ -15,7 +15,7 @@
 
 
 <div class="container" style="padding-top: 2%">
-<form action="{{ route('product.store') }}" method="POST">
+<form action="{{ route('product.store') }}" method="POST"   enctype="multipart/form-data">
     @csrf
         <div class="form-group">
           <label for="exampleFormControlInput1">  Name</label>
@@ -24,6 +24,11 @@
         <div class="form-group">
             <label for="exampleFormControlInput1">  Price</label>
             <input type="text" name="product_price" class="form-control"  placeholder="product price">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlInput1"> image</label>
+            <input type="file" name="image" class="form-control"  placeholder="image">
           </div>
 
         <div class="form-group">
