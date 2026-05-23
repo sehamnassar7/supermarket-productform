@@ -43,9 +43,13 @@
                 <a class="btn btn-primary" href="{{ route('back.softdelete', $item->id) }}">back</a>
                  </div>
                <div class="col-sm">
-
-
+<td>
+                <div class="col-sm">
+                <a class="btn btn-danger" href="{{ route('hard.delete', $item->id) }}">delete</a>
+                 </div>
+               <div class="col-sm">
                 </div>
+            </td>
                </td>
 
         </tr>

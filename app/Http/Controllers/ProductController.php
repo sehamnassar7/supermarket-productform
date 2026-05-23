@@ -107,4 +107,12 @@ class ProductController extends Controller
 
         return redirect ()->route('product.index')->with ('success', 'product restored');
     }
+
+  public function deleteForEver($id)
+    {
+
+        $products= product::onlyTrashed()-> where('id',$id)->forceDelete();
+
+        return redirect ()->route('product.index')->with ('success', 'product restored');
+    }
 }

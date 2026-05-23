@@ -12,6 +12,7 @@ Route::get('product/trash','App\Http\Controllers\ProductController@trashedProduc
 
 Route::get('product/back/from/softdelete/{id}','App\Http\Controllers\ProductController@backFromsoftDelete')->name('back.softdelete');
 
+Route::get('product/Delete/forever/{id}','App\Http\Controllers\ProductController@deleteForEver')->name('hard.delete');
 
 Route::resource ('product','App\Http\Controllers\ProductController');
 
